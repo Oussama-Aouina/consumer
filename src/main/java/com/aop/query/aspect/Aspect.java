@@ -29,4 +29,13 @@ public class Aspect {
     public void afterthrow(JoinPoint joinPoint){
         log.info("transction echoued::"+joinPoint.getTarget());
     }
+
+    @Pointcut("execution(* com.aop.query.service.KafkaService.*(..))")
+    public void kafkaloggin(){};
+
+    @Before("kafkaloggin()")
+    public void beforeConsuming(JoinPoint joinPoint){
+        log.info("message consumed::"+joinPoint.getTarget());
+    }
+
 }
