@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -20,5 +21,10 @@ public class ProductService {
 
     public void addProduct(Product product) {
         productRepo.save(product);
+    }
+
+    public Optional<Product> getProduct(String id) {
+        Optional<Product> product = productRepo.findById(id);
+        return product;
     }
 }
